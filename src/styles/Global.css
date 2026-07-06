@@ -1,0 +1,46 @@
+/* 1. REGISTER OPEN SAUCE FONTS */
+@font-face {
+  font-family: 'Open Sauce';
+  src: url('../assets/OpenSauceTwo-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sauce';
+  src: url('../assets/OpenSauceTwo-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* 2. REGISTER RADLEY FONT */
+@font-face {
+  font-family: 'Radley';
+  src: url('../assets/Radley-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 3. ROOT BACKGROUND SYSTEM */
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* CORRECTION: Pointing exactly to your bg.png asset */
+  background: url('../assets/bg.png') no-repeat center center fixed !important;
+  background-size: cover !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  color: #1a1a1a;
+  min-height: 100vh;
+  background: transparent !important; /* Lets the html image show through cleanly */
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+}

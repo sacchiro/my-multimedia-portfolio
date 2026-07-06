@@ -1,122 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Folder from './components/Folder';
+import { folderData } from './data/folders';
+import './styles/Global.css';
+import './styles/Folder.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [openFolder, setOpenFolder] = useState('education');
+
+  // AN ORGANIZED LOOKUP FOR ALL YOUR CUSTOM FOLDER COLORS
+  const folderColors = {
+    education: '#dddd7b',       // Sage/Muted Green
+    design: '#A2C2E8',          // Baby Blue
+    fyp: '#fdda0d',             // Yellow (Final Year Project)
+    skills: '#ffa602',          // sunburst (Skills & Experience)
+    videos: '#fbd9e5',          // Blush Pink (Video Editing & Animation)
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div style={{ minHeight: '100vh', paddingBottom: '100px' }}>
+      <Header />
+      
+      <div className="folder-container">
+        {folderData.map((folder, index) => {
+          const isOpen = openFolder === folder.id;
+          const openIndex = folderData.findIndex(f => f.id === openFolder);
+          
+          let customMarginTop = '-75px'; 
+          if (index === 0) {
+            customMarginTop = '0px';
+          } else if (index === openIndex + 1) {
+            customMarginTop = '25px';
+          }
 
-      <div className="ticks"></div>
+          // Grabs the mapped color if it exists, otherwise leaves it undefined for default fallback
+          const folderColor = folderColors[folder.id];
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          return (
+            <Folder
+              key={folder.id}
+              folder={folder}
+              index={index}
+              isOpen={isOpen}
+              onOpen={setOpenFolder}
+              dynamicMargin={customMarginTop}
+              customColor={folderColor} // Pass the custom color token down
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
