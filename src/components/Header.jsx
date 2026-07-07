@@ -10,31 +10,62 @@ export default function Header() {
 
   return (
     <header style={{ textAlign: 'center', marginBottom: '40px', paddingTop: '40px' }}>
-      {/* UPDATED TITLE WITH MARGIN-BOTTOM SPACING */}
+      
+      {/* NAME */}
       <h1 style={{ 
         fontFamily: "'Radley', serif", 
         fontSize: '3rem', 
         fontWeight: '400', 
         letterSpacing: '2px', 
-        margin: '0 0 12px 0', /* Changed from 0 to 12px on the bottom to fix overlap */
+        margin: '0',
         color: '#1a1a1a' 
       }}>
-        My Portfolio
+        Nur'Amirah Abdul Razak
       </h1>
-      
-      {/* UPDATED SUBTITLE WITH AN ADJUSTED TOP MARGIN FOR EXTRA BREATHING ROOM */}
+
+      {/* TITLE */}
+      <h2 style={{
+        fontFamily: "'Radley', serif",
+        fontSize: '1.5rem',
+        fontWeight: '400',
+        letterSpacing: '1px',
+        margin: '15px 0 10px 0',
+        color: '#1a1a1a'
+      }}>
+        Multimedia Computing Student
+      </h2>
+
+      {/* SKILLS / ROLE */}
+      <p style={{
+        fontFamily: "'Radley', serif",
+        fontSize: '1.1rem',
+        letterSpacing: '1px',
+        margin: '0',
+        color: '#555'
+      }}>
+        UI/UX • Frontend Developer • Multimedia Designer
+      </p>
+
+      {/* CURATED TEXT */}
       <p style={{ 
         fontSize: '0.85rem', 
         letterSpacing: '3px', 
         textTransform: 'uppercase', 
         color: '#7f8c8d', 
-        margin: '8px 0 0 0' /* Bumped up slightly to cleanly clear font descenders */
+        margin: '25px 0 0 0'
       }}>
         CURATED BY @SACCHIRO
       </p>
-      
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '20px' }}>
-        {/* UPDATED RESUME BUTTON */}
+
+      {/* BUTTONS */}
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        gap: '15px', 
+        marginTop: '20px' 
+      }}>
+
+        {/* RESUME BUTTON */}
         <button 
           onClick={handleViewResume} 
           style={{ 
@@ -60,7 +91,7 @@ export default function Header() {
           📄 My Resume
         </button>
 
-        {/* LINKEDIN BUTTON WITH YOUR LIVE PROFILE ROUTE */}
+        {/* LINKEDIN BUTTON */}
         <a 
           href="https://www.linkedin.com/in/myrarzak-37b06640a" 
           target="_blank" 
@@ -77,7 +108,7 @@ export default function Header() {
             transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#0a66c2'; // Subtle LinkedIn Blue on hover
+            e.currentTarget.style.background = '#0a66c2';
             e.currentTarget.style.color = '#ffffff';
             e.currentTarget.style.borderColor = '#0a66c2';
           }}
@@ -89,6 +120,7 @@ export default function Header() {
         >
           🔗 LinkedIn Profile
         </a>
+
       </div>
     </header>
   );
